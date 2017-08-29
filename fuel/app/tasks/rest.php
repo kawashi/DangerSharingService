@@ -97,65 +97,10 @@ DOC
 
         $content = <<<CONTROLLER
 <?php
-/**
- * Generated rest controller
- * 
- * Auto generated methods:
- * GET    /{$prefix}/{$name}(/:id) => get_index(\$id = 'all')
- * POST   /{$prefix}/{$name}       => post_index()
- * PUT    /{$prefix}/{$name}/:id   => put_index(\$id)
- * DELETE /{$prefix}/{$name}/:id   => delete_index(\$id)
-{$optionalDocs}
- */
 
 class Controller_{$capital_prefix}_{$capital_name} extends Controller_Rest
 {
-	// default format
 	{$format}
-	/**
-	 * GET /{$prefix}/{$name}(/:id)
-	 * @param number \$id (optional) default is 'all'
-	 */
-	public function get_index(\$id = 'all')
-	{
-		\${$names} = {$model}::find(\$id);
-		return \$this->response(\${$names});
-	}
-
-	/**
-	 * POST /{$prefix}/{$name}
-	 */
-	public function post_index()
-	{
-		\${$name} = {$model}::forge(Input::post());
-		\${$name}->save();
-		return \$this->response(\${$name}, 201);	// created
-	}
-
-	/**
-	 * PUT /{$prefix}/{$name}/:id
-	 * @param number \$id
-	 */
-	public function put_index(\$id)
-	{
-		\${$name} = {$model}::find(\$id);
-		\${$name}->set(Input::put());
-		\${$name}->save();
-
-		return \$this->response(\${$name});
-	}
-
-	/**
-	 * DELETE /{$prefix}/{$name}/:id
-	 * @param number \$id
-	 */
-	public function delete_index(\$id)
-	{
-		\${$name} = {$model}::find(\$id);
-		\${$name}->delete();
-
-		return \$this->response(array(), 204);	// no content
-	}
 {$optionalMethod}
 }
 
