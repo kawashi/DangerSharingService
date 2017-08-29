@@ -13,21 +13,17 @@ class Controller_Api_Home extends Controller_Rest
 
     // ツイート取得テスト
     public function get_tweet() {
-        // ライブラリの読み込み
-        require_once (APPPATH.'vendor/twistOAuth.phar');
+        $tweets = Model_Tweet::forge()->fetch_tweet();
 
-        $consumer_key        = $_SERVER['CONSUMER_KEY'];
-        $consumer_secret     = $_SERVER['CONSUMER_SECRET'];
-        $access_token        = $_SERVER['ACCESS_TOKEN'];
-        $access_token_secret = $_SERVER['ACCESS_TOKEN_SECRET'];
-
-        $connection = new TwistOAuth($consumer_key, $consumer_secret, $access_token, $access_token_secret);
-
-        // キーワードによるツイート検索
-        $tweets_params = ['q' => 'jアラート -@ exclude:retweets' ,'count' => '100'];
-        $tweets = $connection->get('search/tweets', $tweets_params)->statuses;
-
-        var_dump($tweets);
+        foreach ( $tweets as $result ) {
+            Model_Tweet::forge()->save_tweet(
+                $result->text,
+                $result->user->name,
+                $result->user->screen_name,
+                $result->user->profile_image_url,
+                strtotime($result->created_at)
+            );
+        }
 
         return $this->response([
             "key" => "test"

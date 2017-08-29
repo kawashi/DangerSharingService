@@ -66,4 +66,47 @@ class Model_Tweet extends \Orm\Model
 	protected static $_belongs_to = array(
 	);
 
+    /**
+     * @return array ツイートの配列を返す
+     */
+	public function fetch_tweet() {
+        // ライブラリの読み込み
+        require_once (APPPATH.'vendor/twistOAuth.phar');
+
+        $consumer_key        = $_SERVER['CONSUMER_KEY'];
+        $consumer_secret     = $_SERVER['CONSUMER_SECRET'];
+        $access_token        = $_SERVER['ACCESS_TOKEN'];
+        $access_token_secret = $_SERVER['ACCESS_TOKEN_SECRET'];
+
+        $connection = new TwistOAuth($consumer_key, $consumer_secret, $access_token, $access_token_secret);
+
+        // キーワードによるツイート検索
+        $tweets_params = ['q' => 'jアラート -@ exclude:retweets' ,'count' => '100'];
+        $tweets = $connection->get('search/tweets', $tweets_params)->statuses;
+
+        return $tweets;
+    }
+
+    /**
+     * @param $text String
+     * @param $user_name String
+     * @param $screen_name String
+     * @param $icon String
+     * @param $time Integer
+     */
+    public function save_tweet($text, $user_name, $screen_name, $icon, $time) {
+	    $this->text        = $text;
+	    $this->user_name   = $user_name;
+	    $this->screen_name = $screen_name;
+        $this->icon        = $icon;
+        $this->time        = $time;
+
+        try {
+            $this->save();
+            echo "safe\n";
+        } catch (Fuel\Core\Database_Exception $e) {
+            echo "out\n";
+        }
+    }
+
 }
