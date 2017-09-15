@@ -1,19 +1,19 @@
 <?php
-return array(
+return array (
   'version' => 
-  array(
+  array (
     'app' => 
-    array(
+    array (
       'default' => 
-      array(
+      array (
         0 => '001_create_tweets',
       ),
     ),
     'module' => 
-    array(
+    array (
     ),
     'package' => 
-    array(
+    array (
     ),
   ),
   'folder' => 'migrations/',
