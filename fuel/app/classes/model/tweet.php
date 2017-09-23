@@ -78,7 +78,7 @@ class Model_Tweet extends \Orm\Model
         $connection = new TwistOAuth($consumer_key, $consumer_secret, $access_token, $access_token_secret);
 
         // キーワードによるツイート検索
-        $tweets_params = ['q' => 'jアラート -@ exclude:retweets', 'count' => '100'];
+        $tweets_params = ['q' => '地震 -@ exclude:retweets', 'count' => '100'];
         $tweets = $connection->get('search/tweets', $tweets_params)->statuses;
 
         return $tweets;
@@ -93,7 +93,6 @@ class Model_Tweet extends \Orm\Model
      */
     public function save_tweet($tweet)
     {
-
         $this->text = $tweet->text;
         $this->user_name = $tweet->user->name;
         $this->screen_name = $tweet->user->screen_name;
