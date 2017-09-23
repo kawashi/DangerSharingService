@@ -94,12 +94,18 @@ class Model_Tweet extends \Orm\Model
      * @param $icon String
      * @param $time Integer
      */
-    public function save_tweet($text, $user_name, $screen_name, $icon, $time) {
-	    $this->text        = $text;
-	    $this->user_name   = $user_name;
-	    $this->screen_name = $screen_name;
-        $this->icon        = $icon;
-        $this->time        = $time;
+    public function save_tweet($tweet) {
+//        $text = $value->text;
+//        $user_name = $value->user->name;
+//        $screen_name = $value->user->screen_name;
+//        $icon = $value->user->profile_image_url;
+//        $time = $value->created_at;
+
+	    $this->text        = $tweet->text;
+	    $this->user_name   = $tweet->user->name;
+	    $this->screen_name = $tweet->user->screen_name;
+        $this->icon        = $tweet->user->profile_image_url;
+        $this->time        = strtotime($tweet->created_at);
 
         try {
             $this->save();

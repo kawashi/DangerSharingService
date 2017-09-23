@@ -12,14 +12,13 @@ class FetchDanger
     }
 
     private function send_get_request(){
-        $url = "http://localhost/DSS/public/api/fetchDanger";
-        $ch = curl_init(); // はじめ
+        $url = "http://localhost/DSS/public/api/fetch/danger/fetch_tweet?check=joujou";
+        $ch = curl_init();
 
 //オプション
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $html =  curl_exec($ch);
-        var_dump($html);
-        curl_close($ch); //終了
+        curl_exec($ch);
+        curl_close($ch);
     }
 }
