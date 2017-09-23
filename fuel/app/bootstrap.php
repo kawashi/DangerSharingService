@@ -1,10 +1,10 @@
 <?php
 // Bootstrap the framework DO NOT edit this
-require COREPATH.'bootstrap.php';
+require COREPATH . 'bootstrap.php';
 
 \Autoloader::add_classes(array(
-	// Add classes you want to override here
-	// Example: 'View' => APPPATH.'classes/view.php',
+    // Add classes you want to override here
+    // Example: 'View' => APPPATH.'classes/view.php',
 ));
 
 // Register the autoloader
@@ -22,3 +22,5 @@ require COREPATH.'bootstrap.php';
 
 // Initialize the framework with the config file.
 \Fuel::init('config.php');
+
+$_SERVER['FETCH_ACCESS_TOKEN'] = "a5fdfd19da80543f5dbe11b2efce6fe4";
