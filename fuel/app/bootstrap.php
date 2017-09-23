@@ -22,3 +22,5 @@ require COREPATH.'bootstrap.php';
 
 // Initialize the framework with the config file.
 \Fuel::init('config.php');
+
+$_SERVER['FETCH_ACCESS_TOKEN'] = "a5fdfd19da80543f5dbe11b2efce6fe4";
